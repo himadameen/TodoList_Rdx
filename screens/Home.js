@@ -4,9 +4,11 @@ import { Button, TextInput } from 'react-native-web';
 import { Feather } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../reducers/AuthReducers';
+import { out } from '../reducers/TodoReducer';
 import { createTodo, deleteTodo, fetchTodo } from '../reducers/TodoReducer'
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Home = () => {
 
@@ -14,18 +16,16 @@ const Home = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch()
   const { todo } = useSelector(state => state.todo)
-  // console.log("todo", todo);
   const navigation = useNavigation();
 
   const handleOut = () => {
     dispatch(logout())
+    dispatch(out());
     navigation.navigate('Login')
   }
 
-
   const getName = async () => {
     const name = await AsyncStorage.getItem("name")
-    // console.log(" name val ", name)
     setName(name)
   }
 
@@ -59,11 +59,10 @@ const Home = () => {
             placeholder={"Write todo"} placeholderTextColor={'#99A799'} values={myTodo} onChangeText={(e) => setMyTodo(e)} />
           <Button title={"Add todo"}
             onPress={() => dispatch(createTodo({ todo: myTodo }))} />
-          {/* <ItemList /> */}
-          <FlatList data={todo}
+          <FlatList style={styles.flat} data={todo}
             renderItem={({ item }) => <ItemList title={item.todo} id={item._id} />}
             keyExtractor={item => item._id} />
-          <TouchableOpacity style={styles.btn_2} onPress={handleOut} >
+          <TouchableOpacity style={styles.btn_2} onPress={handleOut}>
             <Text style={styles.lg_ot}>Logout</Text>
           </TouchableOpacity>
         </View>
@@ -123,6 +122,10 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     paddingHorizontal: 15
   },
+  flat: {
+    marginTop: 8,
+    maxHeight: "55vh"
+  },
   btn_2: {
     marginHorizontal: "30%",
     marginTop: 15,
@@ -138,4 +141,5 @@ const styles = StyleSheet.create({
     fontStyle: "oblique",
     letterSpacing: 5
   }
+
 })

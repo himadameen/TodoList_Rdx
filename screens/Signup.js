@@ -20,14 +20,15 @@ const Signup = () => {
     const { error } = useSelector((state) => state.user);
 
     const Authenticate = () => {
-        if (name !== "" && email !== "" && password !== "" && re_password !== "") {
-            if (!error) {
-                dispatch(signupUser({ name, email, password, re_password }))
-                navigation.navigate('Login', { MyName: name });
-            } else;
-        } else {
-            SetErr(validate(data));
+        if (error) {
+            SetErr(validate(name, email, password, re_password));
             setForm(true);
+        } else {
+            dispatch(signupUser({ name, email, password, re_password }))
+            setTimeout(function () {
+                navigation.navigate('Login')
+                setEmail(""), setPassword("")
+            }, 2000);
         }
     }
 
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: "grey",
         margin: 25,
-        outline: "none",
+        // outline: "none",
         paddingVertical: 15,
         paddingHorizontal: 10,
         fontSize: 20,
@@ -152,4 +153,5 @@ const styles = StyleSheet.create({
         fontStyle: "normal",
         textTransform: "lowercase"
     }
+
 })

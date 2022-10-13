@@ -1,9 +1,8 @@
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser } from '../reducers/AuthReducers'
-
 
 
 const Login = () => {
@@ -15,18 +14,23 @@ const Login = () => {
 
     const navigation = useNavigation();
     const dispatch = useDispatch();
-    const { error } = useSelector((state) => state.user);
+    const { error, token } = useSelector((state) => state.user);
 
     const submit = () => {
-        if (!error) {
-            dispatch(loginUser({ email, password }))
-            navigation.navigate('Home')
-            setEmail(""), setPassword("")
-        } else {
+        if (error) {
             setErr(validate(email, password));
             setForm(true);
+        } else {
+            dispatch(loginUser({ email, password }))
         }
     }
+
+    useEffect(() => {
+        if (token) {
+            navigation.navigate('Home')
+            setEmail(""), setPassword("")
+        }
+    }, [token])
 
     const switches = () => {
         navigation.navigate('Signup');
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: "grey",
         margin: 25,
-        outline: "none",
+        // outline: "none",
         paddingVertical: 15,
         paddingHorizontal: 10,
         fontSize: 20,
@@ -135,4 +139,5 @@ const styles = StyleSheet.create({
         fontStyle: "normal",
         textTransform: "lowercase"
     }
+
 })

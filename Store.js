@@ -7,5 +7,9 @@ export const Store = configureStore({
   reducer: {
     user: AuthReducers,
     todo: TodoReducer
-  }
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

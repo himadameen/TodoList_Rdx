@@ -17,7 +17,6 @@ export const create = async (api, body) => {
 
 export const getList = async (api, body) => {
     const chk = await AsyncStorage.getItem('token');
-    console.log("chk", chk)
     const res = await fetch(url + api, {
         method: "get",
         headers: {
@@ -25,9 +24,6 @@ export const getList = async (api, body) => {
             "Authorization": await AsyncStorage.getItem('token')
         }
     })
-    // const chkk = await res.json()
-    // console.log("chkk", chkk)
-
     return await res.json();
 }
 

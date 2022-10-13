@@ -33,21 +33,23 @@ export const deleteTodo = createAsyncThunk(
 const todoReducer = createSlice({
     name: "todo",
     initialState,
-    reducers: {},
+    reducers: {
+        out: (state, action) => {
+            state.todo = initialState;
+        }
+    },
     extraReducers: {
         [createTodo.fulfilled]: (state, { payload: { message } }) => {
             if (message) state.todo.push(message)
         },
 
         [fetchTodo.fulfilled]: (state, { payload }) => {
-            // console.log(payload.message)
             state.todo = [...payload.message]
-            // return state.todo
         },
 
         [deleteTodo.fulfilled]: (state, { payload: { message } }) => { },
     }
 })
 
+export const { out } = todoReducer.actions
 export default todoReducer.reducer
-

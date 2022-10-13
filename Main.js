@@ -1,15 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
-import Nav from './navigation/Route'
+import RootNav from './navigation/RootNav'
 
 const Main = () => {
   return (
     <View>
-        <Nav />
+      <RootNav />
     </View>
   )
 }
 
 export default Main
-
-const styles = StyleSheet.create({})
