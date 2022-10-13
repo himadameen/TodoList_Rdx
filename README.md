@@ -1,10 +1,10 @@
 <h1>Make Your Daily task with us 😎<h1>
-<div>
+
 <p>The Project is based on to create your daily tasks and motivates you to complete it !!</p>
 <p>Tech Stack :<p>
 <p>React - Native [Expo]</p>
 <p>React Redux - toolkit</p>
-<div>
+
 <p>Procedure ::</p>
 
 <p>First created a Registration and Login Form . By Beautifying the area and giving a custom styling as per the sizes and pages</p>
@@ -16,5 +16,3 @@
 <p>With the help of redux toolkit the process is reusable and apply easily once the concept fit on the state and get the output.</p>
 <p>By storing the token for each user it fetch the data and render the task which user is added. REspectively each user data is stored and rendered each once as per the email and password match. </p>
 <p>So, thus the mini project of making a todo list by authorization of user using redux-toolkit</p>
-</div>
-</div>
