@@ -1,7 +1,7 @@
-<h1>Make Your Daily task with us 😎<h1>
+<h1>Make Your Daily task with us 😎</h1>
 
 <p>The Project is based on to create your daily tasks and motivates you to complete it !!</p>
-<p>Tech Stack :<p>
+<p>Tech Stack :</p>
 <p>React - Native [Expo]</p>
 <p>React Redux - toolkit</p>
 
